@@ -9,9 +9,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import Cronometro from './Cronometro.vue';
-import Botao from './Botao.vue'
+import Botao from './Botao.vue';
+import { useStore } from '@/store';
 
 export default defineComponent ({
     name: 'Temporizador',
@@ -46,6 +47,13 @@ export default defineComponent ({
 
             this.tempoEmSegundos = 0;
 
+        }
+    },
+    setup(){
+        const store = useStore();
+        return {
+            tarefas: computed(() => store.state.tarefas),
+            store
         }
     }
 
